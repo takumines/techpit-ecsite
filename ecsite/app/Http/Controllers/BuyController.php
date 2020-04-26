@@ -7,6 +7,7 @@ use App\CartItem;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\Buy;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\AddressForm;
 
 class BuyController extends Controller
 {
@@ -21,7 +22,7 @@ class BuyController extends Controller
         return view('buy.index', ['cartitems' => $cartitems, 'subtotal' => $subtotal]);
     }
 
-    public function store(Request $request)
+    public function store(AddressForm $request)
     {
         if ($request->has('post')) {
             $cartitems = CartItem::where('user_id', Auth::id())->get();
