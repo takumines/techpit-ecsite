@@ -16,7 +16,7 @@ class CartItemController extends Controller
             $subtotal += $cartitem->item->amount * $cartitem->quantity;
         }
 
-        return view('cartitem/index', ['cartitems' => $cartitems, 'subtotal' => $subtotal]);
+        return view('cartitem.index', ['cartitems' => $cartitems, 'subtotal' => $subtotal]);
     }
 
     /**
