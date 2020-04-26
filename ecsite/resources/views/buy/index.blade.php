@@ -1,6 +1,19 @@
 @extends('layouts.app')
 
+@section('script')
+    <script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
+@endsection
+
 @section('content')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="container">
         <div class="row justify-content-center" style="margin-bottom:10px;">
             <div class="col-md-8">
@@ -9,8 +22,9 @@
                         お届け先入力
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="/buy">
+                        <form class="h-adr" method="POST" action="/buy">
                             @csrf
+                            <span class="p-country-name" style="display:none;">Japan</span>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="name">氏名</label>
@@ -30,7 +44,7 @@
                                         <p class="form-control-static">{{ old('postalcode') }}</p>
                                         <input id="postalcode" type="hidden" name="postalcode" value="{{ old('postalcode') }}">
                                     @else
-                                        <input id="postalcode" type="text" class="form-control" name="postalcode" value="{{ old('postalcode') }}">
+                                        <input id="postalcode" name="postalcode" type="text" class="p-postal-code form-control" alue="{{ old('postalcode') }}" size="8" maxlength="8">
                                     @endif
                                 </div>
                                 <div class="form-group col-md-4">
@@ -39,7 +53,7 @@
                                         <p class="form-control-static">{{ old('region') }}</p>
                                         <input id="region" type="hidden" name="region" value="{{ old('region') }}">
                                     @else
-                                        <select id="region" class="form-control" name="region">
+                                        <select id="region" class="form-control p-region" name="region">
                                             @foreach(Config::get('region') as $value)
                                                 <option @if(old('region') == $value) selected @endif>{{ $value }}</option>
                                             @endforeach
@@ -55,7 +69,8 @@
                                         <p class="form-control-static">{{ old('addressline1') }}</p>
                                         <input id="addressline1" type="hidden" name="addressline1" value="{{ old('addressline1') }}">
                                     @else
-                                        <input id="addressline1" type="text" class="form-control" name="addressline1" value="{{ old('addressline1') }}">
+                                        <input id="addressline1" type="text" name="addressline1" value="{{ old('addressline1') }}"
+                                            class="p-locality p-street-address p-extended-address form-control" />
                                     @endif
                                 </div>
                             </div>
