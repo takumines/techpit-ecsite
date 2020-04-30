@@ -18,7 +18,7 @@
 */
 
 Auth::routes();
-
+Route::get('/', 'ItemController@index');
 /*
 |--------------------------------------------------------------------------
 | User ログイン済み
@@ -27,8 +27,6 @@ Auth::routes();
 
 route::group(['middleware' => 'auth:user'], function() {
 
-    Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/', 'ItemController@index');
     Route::get('/item/{item}', 'ItemController@show');
     Route::post('/cartitem', 'CartItemController@store');
     Route::get('/cartitem', 'CartItemController@index');
@@ -47,7 +45,7 @@ route::group(['middleware' => 'auth:user'], function() {
 
 Route::namespace('Admin')->prefix('admin')->group(function() {
 
-    Route::get('/', function(){ redirect('/admin/home');}); // なくて良いかも
+     // なくて良いかも
     Route::get('/login', 'LoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'LoginController@login');
 
