@@ -45,7 +45,6 @@ route::group(['middleware' => 'auth:user'], function() {
 
 Route::namespace('Admin')->prefix('admin')->group(function() {
 
-     // なくて良いかも
     Route::get('/login', 'LoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'LoginController@login');
 
@@ -68,8 +67,18 @@ Route::namespace('Admin')->prefix('admin')->group(function() {
 |--------------------------------------------------------------------------
 */
 
+Route::namespace('Supplier')->prefix('supplier')->group(function() {
+
+    Route::get('/login', 'LoginController@showLoginForm')->name('supplier.login');
+    Route::post('/login', 'LoginController@login');
+
 /*
 |--------------------------------------------------------------------------
 | supplier ログイン済
 |--------------------------------------------------------------------------
 */
+
+    Route::post('/logout', 'LoginController@logout')->name('supplier.logout');
+    Route::get('/home', 'HomeController@index')->name('supplier.home');
+
+});
