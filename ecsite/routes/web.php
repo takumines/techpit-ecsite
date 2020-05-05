@@ -71,6 +71,8 @@ Route::namespace('Supplier')->prefix('supplier')->group(function() {
 
     Route::get('/login', 'LoginController@showLoginForm')->name('supplier.login');
     Route::post('/login', 'LoginController@login');
+    Route::get('/item/add', 'ItemController@create')->name('supplier.add');
+    Route::post('/item/add', 'ItemController@store');
 
 /*
 |--------------------------------------------------------------------------
