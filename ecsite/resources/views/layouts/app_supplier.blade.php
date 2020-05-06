@@ -53,6 +53,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a href="{{ route('supplier.add') }}" class="dropdown-item">
+                                        商品追加
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('supplier.logout') }}"
                                         onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
