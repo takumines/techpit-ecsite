@@ -71,16 +71,19 @@ Route::namespace('Supplier')->prefix('supplier')->group(function() {
 
     Route::get('/login', 'LoginController@showLoginForm')->name('supplier.login');
     Route::post('/login', 'LoginController@login');
-    Route::get('/item/add', 'ItemController@create')->name('supplier.add');
-    Route::post('/item/add', 'ItemController@store');
+
 
 /*
 |--------------------------------------------------------------------------
 | supplier ログイン済
 |--------------------------------------------------------------------------
 */
+    Route::group(['middleware' => 'auth:supplier'], function() {
 
-    Route::post('/logout', 'LoginController@logout')->name('supplier.logout');
-    Route::get('/home', 'HomeController@index')->name('supplier.home');
+        Route::post('/logout', 'LoginController@logout')->name('supplier.logout');
+        Route::get('/home', 'HomeController@index')->name('supplier.home');
+        Route::get('/item/add', 'ItemController@create')->name('supplier.add');
+        Route::post('/item/add', 'ItemController@store');
+    });
 
 });
