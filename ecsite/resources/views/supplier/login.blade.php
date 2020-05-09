@@ -61,6 +61,10 @@
                     </form>
                 </div>
             </div>
+            <div class="text-center mt-5">
+                <a href="/login" class="btn-lg btn-info">一般ユーザーログイン</a>
+                <a href="/admin/login" class="btn-lg btn-info">管理者ログイン</a>
+            </div>
         </div>
     </div>
 </div>
